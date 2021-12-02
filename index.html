@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    
+    <style>
+        body{
+            margin: 5%;
+            font-family: 'Quicksand', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1 v-text="name"></h1>
+
+            <h4>{{ bilangan }}</h4>
+            <h5>Bilangan ini adalah {{ infoBilangan }}</h5>
+
+            <img v-bind:src="gambar" width="500">
+
+            <p>A progressive framework for building user interfaces</p>
+        </header>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script> -->
+
+    <script>
+        const member = {
+            name: 'Aditya Fitriadi',
+            namaDepan: 'Aditya',
+            namaBelakang: 'Fitriadi',
+            message: "Hello World!",
+            isActive: true,
+            qty: 3,
+            bilangan: 3,
+            link: '<a href="">kelas.vuejs</a>',
+            gambar: 'images/vue-js-header.jpg'
+        }
+
+        const vm = new Vue({
+            el : '#app',
+            data : member,
+            methods: {
+                getName: function(){
+                    return 'Hello, ' + this.name
+                },
+
+                ubahNama: function(namaBaru){
+                    this.name = namaBaru
+                    return this.getName()
+                }
+            },
+            computed: {
+                totalBayar: function(){
+                    return this.qty * 10000
+                },
+                namaLengkap: function(){
+                    return this.namaDepan + " " + this.namaBelakang
+                },
+                infoBilangan: function(){
+                    return this.bilangan%2 === 0 ? 'Genap' : 'Ganjil'
+                }
+            }
+        })
+    </script>
+</body>
+</html>
